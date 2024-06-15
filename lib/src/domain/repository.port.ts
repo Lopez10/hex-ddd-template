@@ -1,5 +1,5 @@
-import { Paginated, PaginationQueryParams } from './pagination';
-import { Id } from './value-object';
+import type { Paginated, PaginationQueryParams } from './pagination';
+import type { Id } from './value-object';
 
 export interface RepositoryPort<Entity> {
 	insert(entity: Entity): Promise<Entity>;

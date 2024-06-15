@@ -1,19 +1,19 @@
-import { Password } from "@lib";
+import { Password } from '@lib';
 
-describe("Password value object test", () => {
+describe('Password value object test', () => {
 	it(`
     GIVEN a text with numbers, uppercase and lowercase and a length between 8 and 50
     WHEN I write the valid password
     THEN the password value object is created
   `, () => {
 		// GIVEN
-		const passwordValid = "1234PasswordValid";
+		const passwordValid = '1234PasswordValid';
 
 		// WHEN
 		const newPassword = new Password({ value: passwordValid });
 
 		// THEN
-		expect(newPassword.compare("1234PasswordValid")).toBeTruthy();
+		expect(newPassword.compare('1234PasswordValid')).toBeTruthy();
 	});
 
 	it(`
@@ -22,14 +22,14 @@ describe("Password value object test", () => {
     THEN the password value object is not created
   `, () => {
 		// GIVEN
-		const passwordInvalid = "1234PASSWORD";
+		const passwordInvalid = '1234PASSWORD';
 
 		// WHEN
 		const newPassword = () => new Password({ value: passwordInvalid });
 
 		// THEN
 		expect(newPassword).toThrow(
-			"Password must contain at least one lowercase letter.",
+			'Password must contain at least one lowercase letter.',
 		);
 	});
 
@@ -39,14 +39,14 @@ describe("Password value object test", () => {
     THEN the password value object is not created
   `, () => {
 		// GIVEN
-		const passwordInvalid = "1234password";
+		const passwordInvalid = '1234password';
 
 		// WHEN
 		const newPassword = () => new Password({ value: passwordInvalid });
 
 		// THEN
 		expect(newPassword).toThrow(
-			"Password must contain at least one uppercase letter.",
+			'Password must contain at least one uppercase letter.',
 		);
 	});
 
@@ -56,13 +56,13 @@ describe("Password value object test", () => {
     THEN the password value object is not created
   `, () => {
 		// GIVEN
-		const passwordInvalid = "passwordPASSWORD";
+		const passwordInvalid = 'passwordPASSWORD';
 
 		// WHEN
 		const newPassword = () => new Password({ value: passwordInvalid });
 
 		// THEN
-		expect(newPassword).toThrow("Password must contain at least one number.");
+		expect(newPassword).toThrow('Password must contain at least one number.');
 	});
 
 	it(`
@@ -71,13 +71,13 @@ describe("Password value object test", () => {
     THEN the password value object is not created
   `, () => {
 		// GIVEN
-		const passwordInvalid = "12asV";
+		const passwordInvalid = '12asV';
 
 		// WHEN
 		const newPassword = () => new Password({ value: passwordInvalid });
 
 		// THEN
-		expect(newPassword).toThrow("Password must be at least 8 characters long.");
+		expect(newPassword).toThrow('Password must be at least 8 characters long.');
 	});
 
 	it(`
@@ -86,12 +86,12 @@ describe("Password value object test", () => {
     THEN the password value object is not created
   `, () => {
 		// GIVEN
-		const passwordInvalid = "12asV".repeat(15);
+		const passwordInvalid = '12asV'.repeat(15);
 
 		// WHEN
 		const newPassword = () => new Password({ value: passwordInvalid });
 
 		// THEN
-		expect(newPassword).toThrow("Password must be at most 50 characters long");
+		expect(newPassword).toThrow('Password must be at most 50 characters long');
 	});
 });

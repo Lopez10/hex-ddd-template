@@ -1,5 +1,5 @@
-import * as bcrypt from "bcrypt";
-import { DomainPrimitive, ValueObject } from "../value-object.base";
+import * as bcrypt from 'bcrypt';
+import { type DomainPrimitive, ValueObject } from '../value-object.base';
 
 export interface PasswordProps {
 	value: string;
@@ -32,19 +32,19 @@ export class Password extends ValueObject<PasswordProps> {
 
 	protected validate({ value: password }: DomainPrimitive<string>): void {
 		if (password.length < 8) {
-			throw new Error("Password must be at least 8 characters long.");
+			throw new Error('Password must be at least 8 characters long.');
 		}
 		if (password.length > 50) {
-			throw new Error("Password must be at most 50 characters long");
+			throw new Error('Password must be at most 50 characters long');
 		}
 		if (!/[A-Z]/.test(password)) {
-			throw new Error("Password must contain at least one uppercase letter.");
+			throw new Error('Password must contain at least one uppercase letter.');
 		}
 		if (!/[a-z]/.test(password)) {
-			throw new Error("Password must contain at least one lowercase letter.");
+			throw new Error('Password must contain at least one lowercase letter.');
 		}
 		if (!/[0-9]/.test(password)) {
-			throw new Error("Password must contain at least one number.");
+			throw new Error('Password must contain at least one number.');
 		}
 	}
 }

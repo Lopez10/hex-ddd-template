@@ -1,4 +1,4 @@
-import { DomainPrimitive, ValueObject } from "../value-object.base";
+import { type DomainPrimitive, ValueObject } from '../value-object.base';
 
 export class Description extends ValueObject<string> {
 	constructor(value: string) {

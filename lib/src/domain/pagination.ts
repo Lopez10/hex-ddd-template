@@ -14,12 +14,8 @@ export class Paginated<T> {
 
 export class PaginationQueryParams {
 	limit: number;
-
 	offset: number;
-
 	page: number;
-
 	orderByField: string;
-
 	orderByParam: string;
 }

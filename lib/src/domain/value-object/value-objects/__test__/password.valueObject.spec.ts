@@ -28,6 +28,70 @@ describe("Password value object test", () => {
 		const newPassword = () => new Password({ value: passwordInvalid });
 
 		// THEN
-		expect(newPassword).toThrow();
+		expect(newPassword).toThrow(
+			"Password must contain at least one lowercase letter.",
+		);
+	});
+
+	it(`
+    GIVEN a text with numbers, lowercase and a length between 8 and 50
+    WHEN I write the invalid password
+    THEN the password value object is not created
+  `, () => {
+		// GIVEN
+		const passwordInvalid = "1234password";
+
+		// WHEN
+		const newPassword = () => new Password({ value: passwordInvalid });
+
+		// THEN
+		expect(newPassword).toThrow(
+			"Password must contain at least one uppercase letter.",
+		);
+	});
+
+	it(`
+    GIVEN a text with lowercase, uppercase and a length between 8 and 50
+    WHEN I write the invalid password
+    THEN the password value object is not created
+  `, () => {
+		// GIVEN
+		const passwordInvalid = "passwordPASSWORD";
+
+		// WHEN
+		const newPassword = () => new Password({ value: passwordInvalid });
+
+		// THEN
+		expect(newPassword).toThrow("Password must contain at least one number.");
+	});
+
+	it(`
+    GIVEN a text with numbers, lowercase, uppercase and a length under 8
+    WHEN I write the invalid password
+    THEN the password value object is not created
+  `, () => {
+		// GIVEN
+		const passwordInvalid = "12asV";
+
+		// WHEN
+		const newPassword = () => new Password({ value: passwordInvalid });
+
+		// THEN
+		expect(newPassword).toThrow("Password must be at least 8 characters long.");
+	});
+
+	it(`
+    GIVEN a text with numbers, lowercase, uppercase and a length over 50
+    WHEN I write the invalid password
+    THEN the password value object is not created
+  `, () => {
+		// GIVEN
+		const passwordInvalid = "12asV".repeat(15);
+
+		// WHEN
+		const newPassword = () => new Password({ value: passwordInvalid });
+
+		// THEN
+		expect(newPassword).toThrow("Password must be at most 50 characters long");
 	});
 });

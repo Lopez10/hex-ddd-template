@@ -1,9 +1,9 @@
-import { type DomainPrimitive, ValueObject } from '../value-object.base';
+import { ValueObject, Either } from '@lib';
+import { InvalidEmailFormatException } from './exceptions/email.value-object.exception';
 
 export class Email extends ValueObject<string> {
-	constructor(value: string) {
+	private constructor(value: string) {
 		super({ value });
-		this.validate({ value });
 		this.props.value = Email.format(value);
 	}
 
@@ -19,11 +19,18 @@ export class Email extends ValueObject<string> {
 		return this.value.substring(this.props.value?.lastIndexOf('@') + 1);
 	}
 
-	protected validate({ value: email }: DomainPrimitive<string>): void {
-		// add email validation
-	}
-
 	static format(email: string): string {
 		return email.trim().toLowerCase();
+	}
+
+	public static create(
+		email: string,
+	): Either<InvalidEmailFormatException, Email> {
+		const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+		const isEmailValid = emailRegex.test(email);
+		if (!isEmailValid) {
+			return Either.left(new InvalidEmailFormatException());
+		}
+		return Either.right(new Email(email));
 	}
 }

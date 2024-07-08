@@ -7,6 +7,7 @@ import {
 	INVALID_ROLE,
 	INVALID_TOKEN,
 	NOT_FOUND,
+	UNEXPECTED_ERROR,
 } from '.';
 import { ExceptionBase } from './exception.base';
 
@@ -63,4 +64,14 @@ export class InvalidRoleException extends ExceptionBase {
 	}
 
 	readonly code = INVALID_ROLE;
+}
+
+export class UnexpectedError extends ExceptionBase {
+	static readonly message = 'Unexpected error';
+
+	constructor(message = UnexpectedError.message) {
+		super(message);
+	}
+
+	readonly code = UNEXPECTED_ERROR;
 }

@@ -1,5 +1,4 @@
 import {
-	ArgumentNotProvidedException,
 	ArgumentInvalidException,
 	ArgumentOutOfRangeException,
 } from '../exceptions';
@@ -32,7 +31,7 @@ export abstract class Entity<T> {
 			return false;
 		}
 
-		return this._id.matches(object._id);
+		return this._id.isEqual(object._id);
 	}
 
 	get propsCopy(): Readonly<{ id: Id } & T> {

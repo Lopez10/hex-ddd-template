@@ -11,7 +11,7 @@ async function bootstrap() {
 	app.setGlobalPrefix('api');
 
 	const config = new DocumentBuilder()
-		.setTitle('Message API')
+		.setTitle('API')
 		.setVersion('1.0')
 		.addBearerAuth()
 		.build();

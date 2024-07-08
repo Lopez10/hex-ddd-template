@@ -19,6 +19,13 @@
 
 			"correctness": {
 				"noUnusedVariables": "off"
+			},
+			"complexity": {
+				"noStaticOnlyClass": "off",
+				"noForEach": "off"
+			},
+			"style": {
+				"useImportType": "off"
 			}
 		}
 	},
